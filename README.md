@@ -75,8 +75,32 @@ Using a headless installation of Raspberry Pi OS (previously called Raspbian)
     `static domain_name_servers=127.0.0.1`<br>
 
 - ## samba server
-
-
+    - Install 
+        `sudo apt-get install samba samba-common-bin`
+    - add file to share in Config file
+        `sudo vim /etc/samba/smb.conf`
+    - config
+        *<fileName> what the folder name will be
+        *<reasonForFile> if you look at this share you know why you added it
+        *<path> the path to the folder/file you want to share
+    
+        ``` 
+        [<fileName>]
+        Comment = <reasonForFile>
+        Path = <path>
+        Browseable = yes
+        Writeable = no
+        only guest = no
+        create mask = 664
+        directory mask = 664
+        Public = yes
+        Guest ok = yes
+        ```
+    - (Optional) add a passoword to samba
+        `sudo smbpasswd -a pi`
+        
+    - Restart the samba server
+        `sudo /etc/init.d/samba restart`
 
 - ## Folder structure
     - HDD
