@@ -79,9 +79,9 @@ Using a headless installation of Raspberry Pi OS (previously called Raspbian)
         `sudo apt-get install samba samba-common-bin`
     - add file to share in Config file
         `sudo vim /etc/samba/smb.conf`
-    - config
-        *<fileName> what the folder name will be
-        *<reasonForFile> if you look at this share you know why you added it
+    - config <br>
+        *<fileName> what the folder name will be <br>
+        *<reasonForFile> if you look at this share you know why you added it <br>
         *<path> the path to the folder/file you want to share
     
         ``` 
