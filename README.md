@@ -26,7 +26,8 @@ Using a headless installation of Raspberry Pi OS (previously called Raspbian)
 - ## [Docker compose](https://dev.to/rohansawant/installing-docker-and-docker-compose-on-the-raspberry-pi-in-5-simple-steps-3mgl) 
     `sudo apt-get install -y libffi-dev libssl-dev` <br>
     `sudo apt-get install -y python3 python3-pip` <br>
-    `sudo apt-get remove python-configparser` 
+    `sudo apt-get remove python-configparser` <br>
+    `sudo pip3 -v install docker-compose`
 
 - ## [Containers](https://www.linuxserver.io/our-images)
     [Sonarr](https://hub.docker.com/r/linuxserver/sonarr) <br>
