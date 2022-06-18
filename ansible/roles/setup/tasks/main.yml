@@ -1,0 +1,20 @@
+- name: Update system packages
+  apt:
+    upgrade: dist
+    update_cache: true
+
+- name: Install required system packages
+  apt:
+    pkg:
+      - vim
+    state: latest
+
+- name: Install Pip packages
+  apt:
+    pkg:
+      - python3-pip
+      - python3-setuptools
+      - python3-dev
+      - libffi-dev
+      - libssl-dev
+    state: latest

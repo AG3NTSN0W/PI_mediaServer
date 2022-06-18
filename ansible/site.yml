@@ -1,0 +1,7 @@
+- name: Setting up media server
+  hosts: localhost
+  remote_user: user
+  
+  roles: "{{tasks_to_run}}"
+
+# Install Sonarr, radarr, Jackett, qbittorrent and nzbhydra

@@ -1,0 +1,15 @@
+# /etc/dhcpcd.conf
+
+# - name: set PI to have a static IP  
+#   lineinfile:
+#     path: "{{dhcpcd_path}}"
+#     line: "interface {{interface}} \n
+#            static ip_address={{ip_address}} \n
+#            static routers={{routers}} \n
+#            static domain_name_servers={{domain_name_servers}}
+#            "
+
+
+# - name: Print version
+#   debug:
+#     msg: " hi "           
