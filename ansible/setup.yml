@@ -2,6 +2,28 @@
   hosts: localhost
   remote_user: user
   tasks:
+
+    - name: Install required system packages
+      become: yes
+      become_method: sudo
+      apt:
+        pkg:
+          - vim
+          - curl
+        state: latest
+
+    - name: Install Pip packages
+      become: yes
+      become_method: sudo
+      apt:
+        pkg:
+          - python3-pip
+          - python3-setuptools
+          - python3-dev
+          - libffi-dev
+          - libssl-dev
+        state: latest
+
     - name: Download .sh File
       ansible.builtin.get_url:
         url: https://get.docker.com
@@ -17,6 +39,4 @@
     #   ansible.builtin.shell: groupadd docker
 
     - name: Setting up docker to work without sudo
-      become: yes
-      become_method: sudo
-      ansible.builtin.shell: usermod -aG docker $USER
+      ansible.builtin.shell: sudo usermod -aG docker $USER
