@@ -1,11 +1,3 @@
-##### Roles
-tasks_to_run:    
-  - setup
-  - folders
-  - samba
-  - staticIP
-  - docker
-
 ##### Folders
 # base_path: /home/downloadServer/<user>
 base_path: /tmp/downloadServer

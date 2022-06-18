@@ -2,6 +2,11 @@
   hosts: localhost
   remote_user: user
   
-  roles: "{{tasks_to_run}}"
+  roles:
+    - setup
+    - folders
+    - samba
+    - staticIP
+    - docker
 
 # Install Sonarr, radarr, Jackett, qbittorrent and nzbhydra
