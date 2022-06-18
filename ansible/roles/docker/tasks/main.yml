@@ -55,12 +55,15 @@
     cmd: cat /tmp/docker.sh | sh -s -- -y    
 
 - name: Setting up docker to work without sudo
-  ansible.builtin.shell: sudo groupadd docker
-  become: true 
+  become: yes
+  become_method: sudo
+  ansible.builtin.shell: groupadd docker
 
 - name: Setting up docker to work without sudo
-  ansible.builtin.shell: sudo usermod -aG docker $USER
-  become: true  
+  become: yes
+  become_method: sudo 
+  ansible.builtin.shell: usermod -aG docker $USER
+
 
 - name: Install Docker Module for Python
   pip:
@@ -145,7 +148,6 @@
           ports:
             - 7878:7878
           restart: unless-stopped
-  register: output
 
 # - debug:
 #     var: output
