@@ -11,10 +11,10 @@
       ansible.builtin.shell:
         cmd: cat /tmp/docker.sh | sh -s -- -y
 
-    - name: Setting up docker to work without sudo
-      become: yes
-      become_method: sudo
-      ansible.builtin.shell: groupadd docker
+    # - name: Setting up docker to work without sudo
+    #   become: yes
+    #   become_method: sudo
+    #   ansible.builtin.shell: groupadd docker
 
     - name: Setting up docker to work without sudo
       become: yes
