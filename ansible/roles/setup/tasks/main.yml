@@ -1,12 +1,13 @@
-- name: Run the equivalent of "apt-get update" as a separate step
+- name: Update and upgrade apt packages
+  become: yes
+  become_method: sudo
   apt:
     update_cache: yes
-
-- name: Upgrade the OS (apt-get dist-upgrade)
-  apt:
-    upgrade: dist
+    upgrade: 'yes'
 
 - name: Install required system packages
+  become: yes
+  become_method: sudo
   apt:
     pkg:
       - vim
@@ -14,6 +15,8 @@
     state: latest
 
 - name: Install Pip packages
+  become: yes
+  become_method: sudo
   apt:
     pkg:
       - python3-pip

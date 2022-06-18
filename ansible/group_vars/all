@@ -1,10 +1,10 @@
 ##### Folders
 # base_path: /home/downloadServer/<user>
 base_path: /tmp/downloadServer
-config_path: "{{base_path}}/config"
-downloads_path: "{{base_path}}/downloads"
-series_path: "{{base_path}}/series"
-movies_path: "{{base_path}}/movies"
+config_dir: "/config"
+downloads_dir: "/downloads"
+series_dir: "/series"
+movies_dir: "/movies"
 config_folders: 
   - sonarr
   - radarr
