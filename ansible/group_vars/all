@@ -19,7 +19,7 @@ image_version: latest # linux
 
 ##### Samba
 # samba_file: /etc/samba/smb.conf
-samba_path: /tmp/smba  
+samba_path: /etc/samba/smb.conf
 samba_packages:
   - samba
   - samba-common-bin
