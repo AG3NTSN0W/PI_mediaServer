@@ -1,50 +1,3 @@
-# use files parameter to use multiple docker-compose.yml files
-# - name: deploy Docker Compose stack
-#   community.docker.docker_compose:
-#     project_src: /somewhere/yourproject
-#     files:
-#     - docker-compose.yml
-#     - docker-compose.prod.yml
-
-# - name: Starting up service with docker compose
-#   hosts: localhost
-#   gather_facts: no
-#   tasks:
-#     - docker_compose:
-#         project_src: flask
-#         state: absent
-
-#     - docker_compose:
-#         project_name: flask
-#         definition:
-#           version: '2'
-#           services:
-#             db:
-#               image: postgres
-#             web:
-#               build: "{{ playbook_dir }}/flask"
-#               command: "python manage.py runserver 0.0.0.0:8000"
-#               volumes:
-#                 - "{{ playbook_dir }}/flask:/code"
-#               ports:
-#                 - "8000:8000"
-#               depends_on:
-#                 - db
-#       register: output
-
-#     - debug:
-#         var: output
-
-#     - assert:
-#         that:
-#           - "web.flask_web_1.state.running"
-#           - "db.flask_db_1.state.running"
-
-
-# - name: Install docker
-#   ansible.builtin.shell: curl -sSL https://get.docker.com | sh
-#   become: true
-
 - name: Install Docker Module for Python
   pip:
     name:
@@ -83,7 +36,6 @@
           ports:
             - 9117:9117
           restart: unless-stopped
-        # any torrnet client can be used. 
         qbittorrent:
           image: "linuxserver/qbittorrent:{{image_version}}"
           container_name: qbittorrent
@@ -101,7 +53,6 @@
             - 6881:6881/udp
             - 8080:8080
           restart: unless-stopped
-        # nzbhydra2 not needed just a nice to have.
         nzbhydra2:
           image: "linuxserver/nzbhydra2:{{image_version}}"
           container_name: nzbhydra2
@@ -128,7 +79,7 @@
           ports:
             - 7878:7878
           restart: unless-stopped
-
+  # register: output
 # - debug:
 #     var: output
 

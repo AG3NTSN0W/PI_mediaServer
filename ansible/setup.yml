@@ -3,6 +3,13 @@
   remote_user: user
   tasks:
 
+    - name: Update and upgrade apt packages
+      become: yes
+      become_method: sudo
+      apt:
+        update_cache: yes
+        upgrade: 'yes'
+
     - name: Install required system packages
       become: yes
       become_method: sudo
@@ -33,10 +40,7 @@
       ansible.builtin.shell:
         cmd: cat /tmp/docker.sh | sh -s -- -y
 
-    # - name: Setting up docker to work without sudo
-    #   become: yes
-    #   become_method: sudo
-    #   ansible.builtin.shell: groupadd docker
-
     - name: Setting up docker to work without sudo
       ansible.builtin.shell: sudo usermod -aG docker $USER
+
+    - debug: msg="Please restart"

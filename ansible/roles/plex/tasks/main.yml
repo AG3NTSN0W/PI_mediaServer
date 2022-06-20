@@ -1,0 +1,19 @@
+- docker_compose:
+    definition:
+      version: "2.1"
+      services:
+        plex:
+          image: "linuxserver/plex:{{image_version}}"
+          container_name: plex
+          network_mode: host
+          environment:
+            - PUID=1000
+            - PGID=1000
+            - VERSION=docker
+          volumes:
+            - "{{base_path}}/{{config_dir}}/plex:/config"
+            - "{{base_path}}/{{series_dir}}:/tv"
+            - "{{base_path}}/{{movies_dir}}:/movies"
+          restart: unless-stopped
+
+          
