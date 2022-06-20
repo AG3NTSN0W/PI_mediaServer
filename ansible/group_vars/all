@@ -28,6 +28,12 @@ config_folders:
 ##
 time_zone: Europe/London
 image_version: latest # For linux
+docker_containers: 
+  - sonarr
+  - radarr
+  - jackett
+  - qbittorrent
+  - nzbhydra2
 
 ##### Samba
 # Does not need to change

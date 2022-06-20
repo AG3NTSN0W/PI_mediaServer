@@ -1,0 +1,21 @@
+- docker_compose:
+    definition:
+      version: "2.1"
+      services:
+        qbittorrent:
+          image: "linuxserver/qbittorrent:{{image_version}}"
+          container_name: qbittorrent
+          environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ="{{time_zone}}"
+            - UMASK_SET=022
+            - WEBUI_PORT=8080
+          volumes:
+            - "{{base_path}}/{{config_dir}}/qbittorrent:/config"
+            - "{{base_path}}/{{downloads_dir}}:/downloads"
+          ports:
+            - 6881:6881
+            - 6881:6881/udp
+            - 8080:8080
+          restart: unless-stopped
