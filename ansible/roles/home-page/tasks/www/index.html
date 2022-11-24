@@ -1,0 +1,137 @@
+<html>
+
+<head>
+    <title>Download Server links</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div class="states" id="states">
+        <div>
+            Temp: <span id="tempValue">20</span> &#8451;
+        </div>
+        <div class="state-fan">
+            Fan:
+            <label class="switch">
+                <input type="checkbox" id="fanValue" onchange="change_fan_state()">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+    <div class="servers">
+        <div class="server ignore" id="server-sonarr" onclick="redirect('sonarr')">
+            <div class="server-header">
+                <img class="server-img" src="http://^IP^:8989/Content/Images/logo.svg"
+                    onerror="this.className = 'error'; this.src = './assets/serverDown.png'">
+                <!-- <a href="/sonarr">Sonarr</a> -->
+                <div class="server-title">
+                    Sonarr
+                </div>
+            </div>
+            <div id="sonarr" class="server-info-queue" style="display: none;">
+                <div class="server-info">
+                    <div class="server-info-title">Activity Info</div>
+                    <div>
+                        Active: <span id="sonarrActive">0</span>
+                    </div>
+                    <div>
+                        Unknown: <span id="sonarrUnknown">0</span>
+                    </div>
+                </div>
+                <div class="server-queue-info">
+                    <div class="server-info-title">Queue</div>
+                    <table class="table">
+                        <tr>
+                            <th style="width:70%">Title</th>
+                            <th style="width:10%" align="left">Size</th>
+                            <th style="width:10%" align="left">Time left</th>
+                        </tr>
+                    </table>
+                    <div class="queue-table">
+                        <table class="table" id="sonarrQueue">
+                            <tr>
+                                <th style="width:70%"></th>
+                                <th style="width:10%"></th>
+                                <th style="width:10%"></th>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="server ignore" id="server-radarr" onclick="redirect('radarr')">
+            <div class="server-header">
+                <img class="server-img" src="http://^IP^:7878/Content/Images/logo-full.png"
+                    onerror="this.className = 'error'; this.src = './assets/serverDown.png'">
+                <!-- <a href="/radarr">Radarr</a> -->
+                <div class="server-title">
+                    Radarr
+                </div>
+            </div>
+            <div id="radarr" class="server-info-queue" style="display: none;">
+                <div class="server-info">
+                    <div class="server-info-title">Activity Info</div>
+                    <div>
+                        Active: <span id="radarrActive">0</span>
+                    </div>
+                    <div>
+                        Unknown: <span id="radarrUnknown">0</span>
+                    </div>
+                </div>
+                <div class="server-queue-info">
+                    <div class="server-info-title">Queue</div>
+                    <table class="table">
+                        <tr>
+                            <th style="width:70%">Title</th>
+                            <th style="width:10%" align="left">Size</th>
+                            <th style="width:10%" align="left">Time left</th>
+                        </tr>
+                    </table>
+                    <div class="queue-table">
+                        <table class="table" id="radarrQueue">
+                            <tr>
+                                <th style="width:70%"></th>
+                                <th style="width:10%"></th>
+                                <th style="width:10%"></th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="server ignore" onclick="redirect('torrent')">
+            <div class="server-header">
+                <img class="server-img" src="http://^IP^:8080/icons/qbittorrent-tray.svg"
+                    onerror="this.className = 'error'; this.src = './assets/serverDown.png'">
+                <!-- <a href="/torrent">Torrent</a> -->
+                <div class="server-title">
+                    Torrent
+                </div>
+            </div>
+        </div>
+        <div class="server ignore" onclick="redirect('jackett')">
+            <div class="server-header">
+                <img class="server-img" src="http://^IP^:9117/jacket_medium.png"
+                    onerror="this.className = 'error'; this.src = './assets/serverDown.png'">
+                <!-- <a href="/jackett">Jackett</a> -->
+                <div class="server-title">
+                    Jackett
+                </div>
+            </div>
+        </div>
+        <div class="server ignore" onclick="redirect('hydra')">
+            <div class="server-header">
+                <img class="server-img" src="http://^IP^:5076/static/img/banner-grey-dark.png" alt="hydra"
+                    onerror="this.className = 'error'; this.src = './assets/serverDown.png'">
+                <!-- <a href="/hydra">Hydra</a> -->
+                <div class="server-title">
+                    Hydra
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

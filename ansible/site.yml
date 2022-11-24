@@ -4,7 +4,9 @@
   
   roles:
     - folders
-    - samba
+    # - samba
     - staticIP
     - containers
-    # - plex
+    - home-page
+    - plex
+
