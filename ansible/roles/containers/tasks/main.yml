@@ -5,7 +5,7 @@
       - docker-compose 
 
 - name: Start container 
-  import_tasks: "{{items}}.yml"
+  include_tasks: "{{item}}.yml"
   loop: "{{docker_containers}}"
 
 # - docker_compose:

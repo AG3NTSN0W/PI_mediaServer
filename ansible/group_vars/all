@@ -1,20 +1,20 @@
 ##### Folders
 
 ## Example ##
-# base_path: /home/downloadServer/pi
+# base_path: /home/pi/downloadServer
 ##
 base_path: /tmp/downloadServer
 
 # Does not need to change
 ## Note Path via example 
-# -- /home/downloadServer/pi/config
-# -- /home/downloadServer/pi/downloads
+# -- /home/pi/downloadServer/config
+# -- /home/pi/downloadServer/downloads
 ##
 config_dir: "/config"
 downloads_dir: "/downloads"
 series_dir: "/series"
 movies_dir: "/movies"
-# Note Path via example -- /home/downloadServer/pi/config/sonarr
+# Note Path via example -- /home/pi/downloadServer/config/sonarr
 config_folders: 
   - sonarr
   - radarr
