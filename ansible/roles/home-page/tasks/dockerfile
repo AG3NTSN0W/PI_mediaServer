@@ -1,3 +1,0 @@
-FROM linuxserver/nginx
-COPY ./www /config/www
-COPY ./config /config/nginx/site-confs

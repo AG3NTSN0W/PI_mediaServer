@@ -15,3 +15,10 @@
           ports:
             - 5076:5076
           restart: unless-stopped
+          mem_limit: 512M
+          mem_reservation: 512M
+          cpus: 0.5 
+          logging:
+            driver: "json-file"
+            options:
+              max-size: "256m"          

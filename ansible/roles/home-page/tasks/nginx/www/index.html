@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="servers">
-        <div class="server ignore" id="server-sonarr" onclick="redirect('sonarr')">
+        <div class="server" id="server-sonarr" onclick="redirect('sonarr')" onauxclick="redirect('sonarr')">
             <div class="server-header">
                 <img class="server-img" src="http://^IP^:8989/Content/Images/logo.svg"
                     onerror="this.className = 'error'; this.src = './assets/serverDown.png'">
@@ -61,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="server ignore" id="server-radarr" onclick="redirect('radarr')">
+        <div class="server" id="server-radarr" onclick="redirect('radarr')" onauxclick="redirect('radarr')">
             <div class="server-header">
                 <img class="server-img" src="http://^IP^:7878/Content/Images/logo-full.png"
                     onerror="this.className = 'error'; this.src = './assets/serverDown.png'">
@@ -101,7 +101,7 @@
                 </div>
             </div>
         </div>
-        <div class="server ignore" onclick="redirect('torrent')">
+        <div class="server" onclick="redirect('torrent')" onauxclick="redirect('torrent')">
             <div class="server-header">
                 <img class="server-img" src="http://^IP^:8080/icons/qbittorrent-tray.svg"
                     onerror="this.className = 'error'; this.src = './assets/serverDown.png'">
@@ -111,7 +111,7 @@
                 </div>
             </div>
         </div>
-        <div class="server ignore" onclick="redirect('jackett')">
+        <div class="server ignore" onclick="redirect('jackett')" onauxclick="redirect('jackett')">
             <div class="server-header">
                 <img class="server-img" src="http://^IP^:9117/jacket_medium.png"
                     onerror="this.className = 'error'; this.src = './assets/serverDown.png'">
@@ -121,7 +121,7 @@
                 </div>
             </div>
         </div>
-        <div class="server ignore" onclick="redirect('hydra')">
+        <div class="server ignore" onclick="redirect('hydra')" onauxclick="redirect('hydra')">
             <div class="server-header">
                 <img class="server-img" src="http://^IP^:5076/static/img/banner-grey-dark.png" alt="hydra"
                     onerror="this.className = 'error'; this.src = './assets/serverDown.png'">

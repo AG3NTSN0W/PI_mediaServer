@@ -20,3 +20,9 @@
             - 6881:6881/udp
             - 8080:8080
           restart: unless-stopped
+          mem_limit: 1024M
+          mem_reservation: 512M
+          logging:
+            driver: "json-file"
+            options:
+              max-size: "256m"          
