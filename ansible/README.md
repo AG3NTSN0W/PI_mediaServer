@@ -4,7 +4,7 @@
     `sudo apt-get install python3-pip`
 
 - ## Install ansible via PIP
-    `sudo python -m pip install ansible`
+    `python -m pip install ansible`
 
 - ## Run setup playbook
     `ansible-playbook -i inventory.yml setup.yml` <br>
