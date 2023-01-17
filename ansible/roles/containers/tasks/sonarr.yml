@@ -20,7 +20,6 @@
           restart: unless-stopped
           mem_limit: 1024M
           mem_reservation: 512M
-          cpus: 0.5  
           logging:
             driver: "json-file"
             options:

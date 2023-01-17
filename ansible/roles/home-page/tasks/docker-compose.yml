@@ -1,0 +1,21 @@
+---
+version: "2.1"
+services:
+  nginx:
+    image: linuxserver/nginx
+    container_name: nginx
+    restart: unless-stopped
+    volumes:
+      - "/tmp/nginx/www:/config/www"
+      - "/tmp/nginx/config:/config/nginx/site-confs"
+    ports:
+      - 80:80
+    mem_limit: 64m
+    mem_reservation: 32M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "256m"  
+
+
+        
