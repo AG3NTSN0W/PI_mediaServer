@@ -1,0 +1,25 @@
+- name: Create a downloads directory if it does not exist
+  file:
+    path: "{{base_path}}/{{downloads_dir}}"
+    state: directory
+
+- name: Create a series directory if it does not exist
+  file:
+    path: "{{base_path}}/{{series_dir}}"
+    state: directory
+
+- name: Create a movies directory if it does not exist
+  file:
+    path: "{{base_path}}/{{movies_dir}}"
+    state: directory
+
+- name: Create a config directory if it does not exist
+  file:
+    path: "{{base_path}}/{{config_dir}}"
+    state: directory
+          
+- name: Create a sub config directory if it does not exist
+  file:
+    path: "{{base_path}}/{{config_dir}}/{{item}}"
+    state: directory
+  loop: "{{ config_folders }}"

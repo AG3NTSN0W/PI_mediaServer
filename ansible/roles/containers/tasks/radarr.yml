@@ -1,0 +1,26 @@
+- docker_compose:
+    project_name: downloadServer
+    definition:
+      version: "2.1"
+      services:
+        radarr:
+          image: "linuxserver/radarr:{{image_version}}"
+          container_name: radarr
+          environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ="{{time_zone}}"
+          volumes:
+            - "{{base_path}}/{{config_dir}}/radarr:/config"
+            - "{{base_path}}/{{movies_dir}}:/movies"
+            - "{{base_path}}/{{downloads_dir}}:/downloads"
+          ports:
+            - 7878:7878
+          restart: unless-stopped
+          mem_limit: 1024M
+          mem_reservation: 512M
+          cpus: 0.5  
+          logging:
+            driver: "json-file"
+            options:
+              max-size: "256m"          

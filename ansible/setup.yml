@@ -1,0 +1,34 @@
+- name: Setting up media server
+  hosts: localhost
+  remote_user: user
+  tasks:
+
+    - name: Update and upgrade apt packages
+      become: yes
+      become_method: sudo
+      apt:
+        update_cache: yes
+        upgrade: 'yes'
+
+    - name: Install required system packages
+      become: yes
+      become_method: sudo
+      apt:
+        pkg:
+          - vim
+          - curl
+        state: latest
+
+    - name: Download .sh File
+      ansible.builtin.get_url:
+        url: https://get.docker.com
+        dest: /tmp/docker.sh
+
+    - name: Run .sh File
+      ansible.builtin.shell:
+        cmd: cat /tmp/docker.sh | sh -s -- -y
+
+    - name: Setting up docker to work without sudo
+      ansible.builtin.shell: sudo usermod -aG docker $USER
+
+    - debug: msg="Please restart"

@@ -1,0 +1,52 @@
+##### Folders
+
+## Example ##
+# base_path: /home/pi/downloadServer
+##
+base_path: /tmp/downloadServer
+
+# Does not need to change
+## Note Path via example 
+# -- /home/pi/downloadServer/config
+# -- /home/pi/downloadServer/downloads
+##
+config_dir: "/config"
+downloads_dir: "/downloads"
+series_dir: "/series"
+movies_dir: "/movies"
+# Note Path via example -- /home/pi/downloadServer/config/sonarr
+config_folders: 
+  - sonarr
+  - radarr
+  - jackett
+  - qbittorrent
+  - nzbhydra2
+
+##### Docker
+## Example ##
+# image_version: arm32v7-latest # For a raspberry PI
+##
+time_zone: Europe/London
+image_version: latest # For linux
+docker_containers: 
+  - sonarr
+  - radarr
+  - jackett
+  - qbittorrent
+  - nzbhydra2
+
+##### Samba
+# Does not need to change
+# Remove samba for site.yml if you dont needed
+samba_path: /etc/samba/smb.conf
+samba_packages:
+  - samba
+  - samba-common-bin
+
+##### Static Ip
+# Remove staticIP for site.yml if you dont needed
+dhcpcd_path: /etc/dhcpcd.conf
+interface: eth0
+ip_address: 127.0.0.1/24
+routers: 127.0.0.1
+domain_name_servers: 127.0.0.1

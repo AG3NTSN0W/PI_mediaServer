@@ -1,0 +1,42 @@
+- name: Install the Samba and additional packages
+  become: yes
+  become_method: sudo
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items: "{{ samba_packages }}"
+
+- name: Inserting series to samba share  
+  become: yes
+  become_method: sudo
+  lineinfile:
+    path: "{{samba_path}}"
+    line: "
+    [series] \n
+        Comment = Downloaded Series \n
+        Path = {{base_path}}{{series_dir}} \n
+        Browseable = yes \n    
+        Writeable = no \n
+        only guest = no \n
+        create mask = 664 \n
+        directory mask = 664 \n
+        Public = yes \n
+        Guest ok = yes \n
+    "
+- name: Inserting movies to samba share  
+  become: yes
+  become_method: sudo
+  lineinfile:
+    path: "{{samba_path}}"
+    line: "
+    [movies] \n
+        Comment = Downloaded movies \n
+        Path = {{base_path}}{{movies_dir}} \n
+        Browseable = yes \n    
+        Writeable = no \n
+        only guest = no \n
+        create mask = 664 \n
+        directory mask = 664 \n
+        Public = yes \n
+        Guest ok = yes \n
+    "
