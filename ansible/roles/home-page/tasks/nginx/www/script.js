@@ -27,7 +27,7 @@ const redirect = (path) => {
 }
 
 const redirectNewTab = (path) => {
-    window.open(`${IP}/${path}`, "_blank");
+    window.open(`${path}`, "_blank");
 }
 
 const showState = () => {
