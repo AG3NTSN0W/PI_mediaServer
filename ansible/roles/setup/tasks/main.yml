@@ -27,7 +27,7 @@
     tags: [never, upgrade]
         
   - name: Update and upgrade apt packages
-    become: yes
+    become: true
     become_method: sudo
     apt:
       update_cache: yes
@@ -35,7 +35,7 @@
     tags: [ never, install ]   
 
   - name: Install required system packages
-    become: yes
+    become: true
     become_method: sudo
     apt:
       pkg:
