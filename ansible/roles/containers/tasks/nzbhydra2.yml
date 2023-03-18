@@ -1,4 +1,5 @@
-- docker_compose:
+- name: Create nzbhydra2 container
+  docker_compose:
     project_name: downloadServer
     definition:
       version: "2.1"
@@ -11,7 +12,7 @@
             - PGID=1000
             - TZ="{{time_zone}}"
           volumes:
-            - "{{base_path}}/{{config_dir}}/nzbhydra2:/config"
+            - "{{base_path}}{{config_dir}}/nzbhydra2:/config"
           ports:
             - 5076:5076
           restart: unless-stopped

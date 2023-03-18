@@ -6,12 +6,11 @@
 - ## Install ansible via PIP
     `python -m pip install ansible`
 
-- ## Run setup playbook
-    `ansible-playbook -i inventory.yml setup.yml` <br>
-    Restart once Playbook is done.
+- ## Install ansible requirements
+    `ansible-galaxy install -r requirements.yml &> /dev/null`    
 
 - ## Update variable for playbook
-    Variables are located in the folder `groupe_vars` folder and update the `all` file <br>
+    Variables are located in the `groupe_vars` folder and update the `all` file <br>
 
 
 - ## Run site playbook    

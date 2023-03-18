@@ -1,0 +1,16 @@
+- name: Update and upgrade apt packages
+  become: yes
+  become_method: sudo
+  apt:
+    update_cache: yes
+    upgrade: 'yes'
+
+- name: Install required system packages
+  become: yes
+  become_method: sudo
+  apt:
+    pkg:
+      - vim
+      - curl
+    state: latest
+

@@ -1,4 +1,5 @@
-- docker_compose:
+- name: Create qbittorrent container
+  docker_compose:
     project_name: downloadServer
     definition:
       version: "2.1"
@@ -13,8 +14,8 @@
             - UMASK_SET=022
             - WEBUI_PORT=8080
           volumes:
-            - "{{base_path}}/{{config_dir}}/qbittorrent:/config"
-            - "{{base_path}}/{{downloads_dir}}:/downloads"
+            - "{{base_path}}{{config_dir}}/qbittorrent:/config"
+            - "{{base_path}}{{downloads_dir}}:/downloads"
           ports:
             - 6881:6881
             - 6881:6881/udp
