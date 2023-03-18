@@ -8,7 +8,15 @@
   ansible.builtin.shell: source ~/.bashrc
   args:
     executable: /bin/bash
+  tags: 
+    - never
+    - install      
+    - upgrade      
 
 - name: Start container 
   include_tasks: "{{item}}.yml"
   loop: "{{docker_containers}}"
+  tags: 
+    - never
+    - install      
+    - upgrade    

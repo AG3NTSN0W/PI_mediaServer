@@ -1,16 +1,45 @@
-- name: Update and upgrade apt packages
-  become: yes
-  become_method: sudo
-  apt:
-    update_cache: yes
-    upgrade: 'yes'
+- block:
+  - pause:
+      prompt: "Path where to setup Media server? Default: {{ base_path }}"
+    register: base_path_prompt
+    when: base_path == "/tmp/downloadServer" and base_path != "N/A"
+    tags: [ never, install, upgrade ]
+  - set_fact:
+        base_path: "{% if base_path_prompt.user_input=='' %}{{base_path}}{% else %}{{base_path_prompt.user_input}}{% endif %}"
+        config_path: "{% if base_path_prompt.user_input=='' %}{{base_path}}{% else %}{{base_path_prompt.user_input}}{% endif %}"
+        downoads_base_path: "{% if base_path_prompt.user_input=='' %}{{base_path}}{% else %}{{base_path_prompt.user_input}}{% endif %}"
+        series_base_path: "{% if base_path_prompt.user_input=='' %}{{base_path}}{% else %}{{base_path_prompt.user_input}}{% endif %}"
+        movies_base_path: "{% if base_path_prompt.user_input=='' %}{{base_path}}{% else %}{{base_path_prompt.user_input}}{% endif %}"
+    when: base_path == "/tmp/downloadServer" and base_path != "N/A"
+    tags: [ never, install, upgrade ]
 
-- name: Install required system packages
-  become: yes
-  become_method: sudo
-  apt:
-    pkg:
-      - vim
-      - curl
-    state: latest
+  - name: Print return information from the previous task
+    ansible.builtin.debug:
+      var: downoads_base_path
+    tags: 
+      - never
+      - install      
+      - upgrade     
 
+  - set_fact:
+      docker_pull: "true"
+      docker_recreate: "always"
+    tags: [never, upgrade]
+        
+  - name: Update and upgrade apt packages
+    become: yes
+    become_method: sudo
+    apt:
+      update_cache: yes
+      upgrade: 'yes'
+    tags: [ never, install ]   
+
+  - name: Install required system packages
+    become: yes
+    become_method: sudo
+    apt:
+      pkg:
+        - vim
+        - curl
+      state: latest
+    tags: [ never, install ] 

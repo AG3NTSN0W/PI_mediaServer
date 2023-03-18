@@ -1,8 +1,12 @@
 - name: Setting up media server
   hosts: localhost
   remote_user: user
-  
+
   vars:
+    base_path: "{{default_base_path | default('/tmp/downloadServer')}}"
+    time_zone: "{{ ansible_env.TZ | default('Europe/London') }}"
+    docker_pull: "fasle"
+    docker_recreate: "smart"
     current_user: "{{ lookup('env', 'USER') }}"
     distro: "{{ ansible_distribution }}"
     distro_releases:
@@ -15,7 +19,7 @@
     ansible_os_family: Debian
     pip_install_packages:
       - name: docker
-
+        
   roles:
     - setup
     - geerlingguy.pip
@@ -39,4 +43,3 @@
     - containers
     - home-page
     - plex
-

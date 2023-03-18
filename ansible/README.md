@@ -15,7 +15,7 @@
 
 - ## Run site playbook    
     If you dont need samba and static Ip remove them for the site.yml file <br>
-    `ansible-playbook -i inventory.yml site.yml` <br>
+    `ansible-playbook -i inventory.yml site.yml --tags="install"` <br>
 
 - ## Done
 

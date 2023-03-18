@@ -1,4 +1,6 @@
 - docker_compose:
+    pull: "{{docker_pull}}"
+    recreate: "{{docker_recreate}}"
     project_name: downloadServer
     definition:
       version: "2.1"
@@ -11,10 +13,14 @@
             - PUID=1000
             - PGID=1000
             - VERSION=docker
+            - TZ="{{time_zone}}"
           volumes:
-            - "{{base_path}}/{{config_dir}}/plex:/config"
-            - "{{base_path}}/{{series_dir}}:/tv"
-            - "{{base_path}}/{{movies_dir}}:/movies"
+            - "{{config_base_path}}/{{config_dir}}/plex:/config"
+            - "{{series_base_path}}/{{series_dir}}:/tv"
+            - "{{movies_base_path}}/{{movies_dir}}:/movies"
           restart: unless-stopped
+  tags: 
+    - install      
+    - upgrade  
 
           

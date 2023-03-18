@@ -1,5 +1,7 @@
 - name: Create radarr container
   docker_compose:
+    pull: "{{docker_pull}}"
+    recreate: "{{docker_recreate}}"
     project_name: downloadServer
     definition:
       version: "2.1"
@@ -12,9 +14,9 @@
             - PGID=1000
             - TZ="{{time_zone}}"
           volumes:
-            - "{{base_path}}{{config_dir}}/radarr:/config"
-            - "{{base_path}}{{movies_dir}}:/movies"
-            - "{{base_path}}{{downloads_dir}}:/downloads"
+            - "{{config_base_path}}/{{config_dir}}/radarr:/config"
+            - "{{movies_base_path}}/{{movies_dir}}:/movies"
+            - "{{downoads_base_path}}/{{downloads_dir}}:/downloads"
           ports:
             - 7878:7878
           restart: unless-stopped
@@ -24,3 +26,7 @@
             driver: "json-file"
             options:
               max-size: "256m"          
+  tags: 
+    - never
+    - install      
+    - upgrade                

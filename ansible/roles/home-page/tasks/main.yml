@@ -1,7 +1,10 @@
 - name: Copy home-page data
   copy:
     src: ./nginx
-    dest: "{{base_path}}/{{config_dir}}/"
+    dest: "{{config_base_path}}/{{config_dir}}/"
+  tags: 
+    - never
+    - install   
 - docker_compose:
     project_name: downloadServer
     definition:
@@ -12,8 +15,8 @@
           container_name: nginx
           restart: unless-stopped
           volumes:
-            - "{{base_path}}/{{config_dir}}/nginx/www:/config/www"
-            - "{{base_path}}/{{config_dir}}/nginx/config:/config/nginx/site-confs"
+            - "{{config_base_path}}/{{config_dir}}/nginx/www:/config/www"
+            - "{{config_base_path}}/{{config_dir}}/nginx/config:/config/nginx/site-confs"
           ports:
             - 80:80  
           mem_limit: 64m
@@ -23,3 +26,6 @@
             driver: "json-file"
             options:
               max-size: "256m"          
+  tags: 
+    - never
+    - install

@@ -3,31 +3,19 @@
 ## Example ##
 # base_path: /home/pi/downloadServer
 ##
-base_path: /tmp/downloadServer
+default_base_path: "/tmp/downloadServer" # set base path to "N/A" if you want set the custom paths for config_path, downoads_base_path, series_base_path, movies_base_path
 
-# Does not need to change
-## Note Path via example 
-# -- /home/pi/downloadServer/config
-# -- /home/pi/downloadServer/downloads
-##
-config_dir: "/config"
-downloads_dir: "/downloads"
-series_dir: "/series"
-movies_dir: "/movies"
-# Note Path via example -- /home/pi/downloadServer/config/sonarr
-config_folders: 
-  - sonarr
-  - radarr
-  - jackett
-  - qbittorrent
-  - nzbhydra2
+config_base_path: "{{default_base_path}}"
+downoads_base_path: "{{default_base_path}}"
+series_base_path: "{{default_base_path}}"
+movies_base_path: "{{default_base_path}}"
 
-##### Docker
+##### Docker image Version
 ## Example ##
 # image_version: arm32v7-latest # For a raspberry PI
 ##
-time_zone: Europe/London
 image_version: latest # For linux
+# Containers
 docker_containers: 
   - sonarr
   - radarr
@@ -35,18 +23,20 @@ docker_containers:
   - qbittorrent
   - nzbhydra2
 
-##### Samba
 # Does not need to change
-# Remove samba for site.yml if you dont needed
-samba_path: /etc/samba/smb.conf
-samba_packages:
-  - samba
-  - samba-common-bin
+## Note Path via example 
+# -- /tmp/downloadServer/config
+# -- /tmp/downloadServer/downloads
+##
+config_dir: "config"
+downloads_dir: "downloads"
+series_dir: "series"
+movies_dir: "movies"
+# Server config folder names
+config_folders: 
+  - sonarr # {{config_path}}/config/sonarr
+  - radarr # {{config_path}}/config/radarr
+  - jackett
+  - qbittorrent
+  - nzbhydra2
 
-##### Static Ip
-# Remove staticIP for site.yml if you dont needed
-dhcpcd_path: /etc/dhcpcd.conf
-interface: eth0
-ip_address: 127.0.0.1/24
-routers: 127.0.0.1
-domain_name_servers: 127.0.0.1
