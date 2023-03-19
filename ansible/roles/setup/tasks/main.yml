@@ -22,7 +22,7 @@
       - upgrade     
 
   - set_fact:
-      docker_pull: "true"
+      docker_pull: true
       docker_recreate: "always"
     tags: [never, upgrade]
         

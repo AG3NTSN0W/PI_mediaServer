@@ -5,7 +5,7 @@
   vars:
     base_path: "{{default_base_path | default('/tmp/downloadServer')}}"
     time_zone: "{{ ansible_env.TZ | default('Europe/London') }}"
-    docker_pull: "fasle"
+    docker_pull: 'false'
     docker_recreate: "smart"
     current_user: "{{ lookup('env', 'USER') }}"
     distro: "{{ ansible_distribution }}"
@@ -26,6 +26,7 @@
     - role: geerlingguy.docker
       tags:
         - docker
+        - install
       become: true
       docker_edition: 'ce'
       docker_apt_repository: "deb [arch={{ docker_apt_arch }}] {{ docker_repo_url }}/{{ distro | lower }} {{ distro_release }} {{ docker_apt_release_channel }}"
