@@ -32,4 +32,5 @@
   tags: 
     - never
     - install      
-    - upgrade                
+    - upgrade    
+    - rebuild             

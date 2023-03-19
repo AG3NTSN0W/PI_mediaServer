@@ -1,8 +1,13 @@
-# - name: Install Docker Module for Python
-#   pip:
-#     name:
-#       - docker
-#       - docker-compose 
+- name: Install Docker Module for Python
+  pip:
+    name:
+      - docker
+      - docker-compose 
+  tags: 
+    - never
+    - install      
+    - upgrade    
+    - rebuild    
 
 - name: source bashrc
   ansible.builtin.shell: source ~/.bashrc
@@ -10,8 +15,7 @@
     executable: /bin/bash
   tags: 
     - never
-    - install      
-    - upgrade      
+    - install    
 
 - name: Start container 
   include_tasks: "{{item}}.yml"
@@ -20,3 +24,4 @@
     - never
     - install      
     - upgrade    
+    - rebuild

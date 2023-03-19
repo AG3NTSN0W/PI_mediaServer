@@ -19,7 +19,8 @@
     tags: 
       - never
       - install      
-      - upgrade     
+      - upgrade    
+      - rebuild  
 
   - set_fact:
       docker_pull: true
