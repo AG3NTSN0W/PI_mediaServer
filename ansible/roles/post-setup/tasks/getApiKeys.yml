@@ -1,16 +1,44 @@
-- block:        
+- block:     
+  - name: Wait for Sonarr to be ready
+    wait_for:
+      port: 8989
+      host: "{{ip_address}}"
+      connect_timeout: 3
+      delay: 5
+      timeout: 30 
   - name: Get Sonarr API key
     shell: xmllint  --xpath '//Config/ApiKey' {{config_base_path}}/{{config_dir}}/sonarr/config.xml | sed '/^\/ >/d' | sed 's/<[^>]*.//g'
     register: sonarr_xmllint
 
+  - name: Wait for Radarr to be ready
+    wait_for:
+      port: 7878
+      host: "{{ip_address}}"
+      connect_timeout: 3
+      delay: 5
+      timeout: 30  
   - name: Get Radarr API key
     shell: xmllint  --xpath '//Config/ApiKey' {{config_base_path}}/{{config_dir}}/radarr/config.xml | sed '/^\/ >/d' | sed 's/<[^>]*.//g'
     register: radarr_xmllint
 
+  - name: Wait for Hydra to be ready
+    wait_for:
+      port: 5076
+      host: "{{ip_address}}"
+      connect_timeout: 3
+      delay: 3
+      timeout: 30 
   - name: Get Hydra API key
     shell: cat {{config_base_path}}/{{config_dir}}/nzbhydra2/nzbhydra.yml | grep apiKey | tr -d '"' | tr -d '[:space:]' | sed 's#apiKey:##g'
     register: hydra_key
 
+  - name: Wait for Jackett to be ready
+    wait_for:
+      port: 9117
+      host: "{{ip_address}}"
+      connect_timeout: 3
+      delay: 3
+      timeout: 30 
   - name: Get Jackett API key
     shell: cat {{config_base_path}}/{{config_dir}}/jackett/Jackett/ServerConfig.json | grep APIKey | tr -d '"' | tr -d '[:space:]' | tr -d ',' | sed 's#APIKey:##g'
     register: jackett_key      
@@ -19,8 +47,7 @@
       sonarr_api_key: '{{sonarr_xmllint.stdout}}'
       radarr_api_key: '{{radarr_xmllint.stdout}}'
       hydra_api_key: '{{hydra_key.stdout}}'
-      jackett_api_key: '{{jackett_key.stdout}}' 
-      ip_address: "{{hostvars[inventory_hostname]['ansible_default_ipv4']['address']}}"
+      jackett_api_key: '{{jackett_key.stdout}}'
 
   - name: ip_address
     ansible.builtin.debug:

@@ -7,6 +7,7 @@
     time_zone: "{{ ansible_env.TZ | default('Europe/London') }}"
     docker_pull: 'false'
     docker_recreate: "smart"
+    ip_address: "{{hostvars[inventory_hostname]['ansible_default_ipv4']['address']}}"
     current_user: "{{ lookup('env', 'USER') }}"
     distro: "{{ ansible_distribution }}"
     distro_releases:

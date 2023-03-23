@@ -1,5 +1,5 @@
 
-- block:    
+- block:
   - name: Get Jacket Cookie
     uri:
       url: "http://{{ip_address}}:9117"

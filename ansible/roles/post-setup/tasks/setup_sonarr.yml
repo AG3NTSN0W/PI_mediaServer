@@ -1,4 +1,11 @@
-- block:      
+- block:  
+  - name: Wait for download client to be ready
+    wait_for:
+      port: 8080
+      host: "{{ip_address}}"
+      connect_timeout: 3
+      delay: 5
+      timeout: 30            
   - name: Sonarr get indexers from hydra
     ansible.builtin.uri:
       url: http://{{ip_address}}:5076/internalapi/externalTools/configure 
