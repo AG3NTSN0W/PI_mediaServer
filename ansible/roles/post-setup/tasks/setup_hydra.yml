@@ -1,0 +1,42 @@
+
+- block:    
+  - name: Hydra get indexers from jackett
+    ansible.builtin.uri:
+      url: http://{{ip_address}}:5076/internalapi/indexer/readJackettConfig
+      method: POST
+      body: "{\"existingIndexers\":[],\"jackettConfig\":{\"allCapsChecked\":false,\"apiKey\":\"{{jackett_api_key}}\",\"backend\":\"NEWZNAB\",\"color\":null,\"configComplete\":false,\"categoryMapping\":null,\"downloadLimit\":null,\"enabledCategories\":[],\"enabledForSearchSource\":\"BOTH\",\"generalMinSize\":null,\"hitLimit\":null,\"hitLimitResetTime\":0,\"host\":\"http://{{ip_address}}:9117\",\"loadLimitOnRandom\":null,\"name\":\"Jackett config\",\"password\":null,\"preselect\":true,\"score\":0,\"searchModuleType\":\"JACKETT_CONFIG\",\"showOnSearch\":true,\"state\":\"ENABLED\",\"timeout\":null,\"username\":null,\"userAgent\":null,\"isInitial\":false,\"showAdvanced\":false}}"
+      status_code: 200
+      body_format: json
+      headers:
+        Content-Type: application/json
+    register: newIndexersConfigResponse
+
+  - name: get Hydra config
+    ansible.builtin.uri:
+      url: http://{{ip_address}}:5076/internalapi/config
+      method: GET
+      status_code: 200
+      headers:
+        Content-Type: application/json
+    register: hydraConfigResponse   
+
+  - set_fact:
+      hydraConfig_json: '{{hydraConfigResponse.json}}'
+      newIndexersConfig: '{{newIndexersConfigResponse.json.newIndexersConfig}}'
+
+  - set_fact:
+      hydraConfig: "{{ hydraConfig_json | combine( { 'indexers' : newIndexersConfig}, recursive=true) }}"
+
+  - name: get Hydra config
+    ansible.builtin.uri:
+      url: http://{{ip_address}}:5076/internalapi/config
+      method: PUT
+      status_code: 200
+      body_format: json
+      body: "{{hydraConfig}}"
+      headers:
+        Content-Type: application/json    
+
+  tags: 
+    - never
+    - install    

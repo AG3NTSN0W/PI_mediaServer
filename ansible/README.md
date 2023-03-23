@@ -56,7 +56,7 @@
     ```
 
 - ## Upgrade all containers
-    `ansible-playbook -i inventory.yml site.yml --tags="upgrade"`
+    `ansible-playbook -i inventory.yml site.yml --tags="update"`
 
 ## Home Page
 ![](../assets/Homepage.png)

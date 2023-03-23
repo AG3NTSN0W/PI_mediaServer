@@ -21,7 +21,7 @@
           restart: unless-stopped
   tags: 
     - install      
-    - upgrade  
+    - update  
     - rebuild 
 
           

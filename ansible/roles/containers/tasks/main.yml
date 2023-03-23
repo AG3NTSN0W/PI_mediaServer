@@ -6,7 +6,7 @@
   tags: 
     - never
     - install      
-    - upgrade    
+    - update    
     - rebuild    
 
 - name: source bashrc
@@ -23,5 +23,5 @@
   tags: 
     - never
     - install      
-    - upgrade    
+    - update    
     - rebuild

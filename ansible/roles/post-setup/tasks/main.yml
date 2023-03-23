@@ -1,0 +1,7 @@
+- block:     
+  - name: Post setup
+    include_tasks: "{{item}}.yml"
+    loop: "{{post_setup}}"
+    tags: 
+      - never
+      - install

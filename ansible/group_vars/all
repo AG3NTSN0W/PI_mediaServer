@@ -40,3 +40,15 @@ config_folders:
   - qbittorrent
   - nzbhydra2
 
+post_setup: 
+  - getApiKeys
+  - setup_jackett
+  - setup_hydra
+  - setup_sonarr
+  - setup_radarr
+
+jackett_indexers:
+  - 1337x
+  - nyaasi
+  - thepiratebay
+  - eztv

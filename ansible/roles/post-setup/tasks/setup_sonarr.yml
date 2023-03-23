@@ -1,0 +1,89 @@
+- block:      
+  - name: Sonarr get indexers from hydra
+    ansible.builtin.uri:
+      url: http://{{ip_address}}:5076/internalapi/externalTools/configure 
+      method: POST
+      body: 
+        "nzbhydraName": "NZBHydra2"
+        "externalTool": "Sonarrv3"
+        "nzbhydraHost": "http://{{ip_address}}:5076"
+        "addType": "SINGLE"
+        "xdarrHost": "http://{{ip_address}}:8989"
+        "xdarrApiKey": "{{sonarr_api_key}}"
+        "enableRss": true
+        "enableAutomaticSearch": true
+        "enableInteractiveSearch": true
+        "categories": "5030,5040"
+        "animeCategories": "5070,140679"
+        "removeYearFromSearchString": false
+        "configureForUsenet": false
+        "configureForTorrents": true
+        "addDisabledIndexers": false
+        "priority": 0
+        "useHydraPriorities": true
+      status_code: 200
+      body_format: json
+      headers:
+        Content-Type: application/json
+
+  - name: Sonarr add donwload client
+    ansible.builtin.uri:
+      url: http://{{ip_address}}:8989/api/v3/downloadclient?
+      method: POST
+      body: 
+        "enable": true
+        "protocol": "torrent"
+        "priority": 1
+        "removeCompletedDownloads": true
+        "removeFailedDownloads": true
+        "name": "qBittorrent"
+        "fields":
+            - "name": "host"
+              "value": "{{ip_address}}"
+
+            - "name": "port"
+              "value": 8080
+
+            - "name": "useSsl"
+              "value": false
+
+            - "name": "urlBase"
+
+            - "name": "username"
+              "value": "admin"
+
+            - "name": "password"
+              "value": "adminadmin"
+
+            - "name": "tvCategory"
+              "value": "tv-sonarr"
+
+            - "name": "tvImportedCategory"
+
+            - "name": "recentTvPriority"
+              "value": 0
+
+            - "name": "olderTvPriority"
+              "value": 0
+
+            - "name": "initialState"
+              "value": 0
+
+            - "name": "sequentialOrder"
+              "value": false
+
+            - "name": "firstAndLast"
+              "value": false
+        "implementationName": "qBittorrent"
+        "implementation": "QBittorrent"
+        "configContract": "QBittorrentSettings"
+        "infoLink": "https://wiki.servarr.com/sonarr/supported#qbittorrent"
+        "tags": []
+      status_code: 201
+      body_format: json
+      headers:
+        Content-Type: application/json
+        X-Api-Key: "{{sonarr_api_key}}"
+  tags: 
+    - never
+    - install                

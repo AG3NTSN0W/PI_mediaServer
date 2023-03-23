@@ -1,0 +1,26 @@
+
+- block:    
+  - name: Get Jacket Cookie
+    uri:
+      url: "http://{{ip_address}}:9117"
+      method: Get
+      status_code: 200
+      follow_redirects: true
+    register: jackett
+
+  - name: add indexers
+    ansible.builtin.uri:
+      url: http://{{ip_address}}:9117/api/v2.0/indexers/{{indexer}}/config
+      method: POST
+      body: "{{lookup('ansible.builtin.file', './json/jackett/{{indexer}}.json') | from_json }}"
+      status_code: 204
+      body_format: json
+      headers:
+        Content-Type: application/json
+        Cookie: "{{ jackett.cookies_string }}"
+    loop: "{{jackett_indexers}}"
+    loop_control:
+      loop_var: indexer
+  tags: 
+    - never
+    - install     

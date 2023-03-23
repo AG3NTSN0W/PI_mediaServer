@@ -1,0 +1,33 @@
+[
+    {
+        "id": "sitelink",
+        "value": "https://1337x.to/"
+    },
+    {},
+    {
+        "id": "flaresolverr"
+    },
+    {
+        "id": "downloadlink",
+        "value": "magnet:"
+    },
+    {
+        "id": "downloadlink(fallback)",
+        "value": "http://itorrents.org/"
+    },
+    {
+        "id": "aboutthedownloadlinks"
+    },
+    {
+        "id": "sortrequestedfromsite",
+        "value": "time"
+    },
+    {
+        "id": "orderrequestedfromsite",
+        "value": "desc"
+    },
+    {
+        "id": "tags",
+        "value": ""
+    }
+]
