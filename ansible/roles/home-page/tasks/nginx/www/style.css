@@ -107,3 +107,16 @@ body {
     }
 
 }
+
+.footer {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    padding: 5px;
+}
+
+.footer-img {
+    height: 30px;
+    width: 30px;
+    padding: 5px;
+}

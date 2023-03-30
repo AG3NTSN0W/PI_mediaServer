@@ -9,8 +9,8 @@
     - update    
     - rebuild    
 
-- name: source bashrc
-  ansible.builtin.shell: source ~/.bashrc
+- name: Run docker without relogging
+  ansible.builtin.shell: exec su -l {{current_user}}
   args:
     executable: /bin/bash
   tags: 

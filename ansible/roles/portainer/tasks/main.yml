@@ -1,0 +1,21 @@
+- docker_compose:
+    pull: "{{docker_pull}}"
+    recreate: "{{docker_recreate}}"
+    project_name: downloadServer
+    definition:
+      version: "2.1"
+      services:
+        portainer:
+          image: "portainer/portainer-ce:{{image_version}}"
+          container_name: portainer
+          network_mode: host
+          environment:
+            - TZ="{{time_zone}}"
+          volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - "{{config_base_path}}/{{config_dir}}/portainer:/data"
+          restart: unless-stopped
+  tags: 
+    - install      
+    - update  
+    - rebuild 
