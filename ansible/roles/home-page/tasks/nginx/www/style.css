@@ -94,16 +94,34 @@ body {
     width: 30px;
 }
 
-@media only screen and (max-width: 1800px) {
+@media only screen and (max-width: 1400px) {
     .server {
         flex-basis: 100%;
     }
+
+    .servers {
+        display: block;
+    }
+
+    .server {
+        height: 130px;
+    }
+
 }
 
 
 @media only screen and (max-width: 1000px) {
+
     .server-title {
         font-size: 60px;
+    }
+
+    .server {
+        height: 200px;
+    }
+
+    .server-img {
+        height: 150px !important;
     }
 
 }
