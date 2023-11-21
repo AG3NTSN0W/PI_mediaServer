@@ -3,9 +3,12 @@
     src: ./nginx
     dest: "{{config_base_path}}/{{config_dir}}/"
   tags: 
-    - never
+    - update
     - install   
+    - rebuild 
 - docker_compose:
+    pull: "{{docker_pull}}"
+    recreate: "{{docker_recreate}}"
     project_name: downloadServer
     definition:
       version: "2.1"
@@ -27,6 +30,6 @@
             options:
               max-size: "256m"          
   tags: 
-    - never
+    - update
     - install
     - rebuild 
